@@ -8,6 +8,11 @@ double Bank::calculateInterest() const {
     return loan * interestRate;
 }
 
+void Bank::applyInterest() {
+    double interest = loan * interestRate;
+    loan += interest;
+}
+
 void Bank::takeLoan(double money) {
     if (money <= 0) {
         std::cout << "[대출 실패] 금액이 0원 이하입니다.\n";
@@ -34,5 +39,4 @@ void Bank::repayLoan(double money) {
 
 void Bank::showStatus() const {
     std::cout << "대출금: " << loan << " 원\n";
-    std::cout << "이자: " << calculateInterest() << " 원\n";
 }

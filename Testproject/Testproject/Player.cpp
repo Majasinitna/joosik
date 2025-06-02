@@ -1,7 +1,7 @@
 #include "Player.h"
 #include <iostream>
 
-Player::Player(int companyCount) : funds(100000) {
+Player::Player(int companyCount) : funds(1000000) {
     holdings.resize(companyCount, 0);
     averageBuyPrices.resize(companyCount, 0.0);
 }
@@ -78,7 +78,6 @@ void Player::showStatus(const std::vector<Company>& companies, const Bank& bank)
 
     std::cout << "\n[대출 현황]\n";
     std::cout << "대출 금액: " << bank.getLoanAmount() << " 원\n";
-    std::cout << "이자: " << bank.calculateInterest() << " 원\n";
 
     std::cout << "=============================\n";
 }

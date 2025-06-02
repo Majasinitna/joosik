@@ -21,6 +21,7 @@ void Game::start() {
     }
 
     clearScreen();
+
     std::cout << "게임 종료! 최종 자산: " << player.getFunds() << " 원\n";
 
     // 엔딩 메시지
@@ -38,7 +39,6 @@ void Game::start() {
     // 포트폴리오 및 상태 출력
     std::cout << "\n===== 최종 포트폴리오 상태 =====\n";
     player.showStatus(news.getCompanies(), bank);
-    bank.showStatus();
 }
 
 void Game::playRound() {
@@ -56,7 +56,8 @@ void Game::playRound() {
         std::cout << "2. 주식 매도\n";
         std::cout << "3. 포트폴리오 확인\n";
         std::cout << "4. 대출 신청\n";
-        std::cout << "5. 다음 라운드\n";
+        std::cout << "5. 대출 상환\n";
+        std::cout << "6. 다음 라운드\n";
         std::cout << "선택 입력: ";
 
         int choice;
@@ -175,6 +176,13 @@ void Game::playRound() {
             break;
         }
         case 5: {
+            double amount;
+            std::cout << "상환할 금액 입력: ";
+            std::cin >> amount;
+            bank.repayLoan(amount);
+            break;
+        }
+        case 6: {
             roundContinues = false;
 
             // 라운드 증가
@@ -193,13 +201,12 @@ void Game::playRound() {
     }
 
     // 라운드 종료 후 뉴스 결과 반영 및 상태 출력
-
-    std::cout << "\n[회사 주식 가격 현황]\n";
     news.showCompanyStatus();
+    bank.applyInterest();
 
     std::cout << "\n[플레이어 상태 요약]\n";
     player.showStatus(news.getCompanies(), bank);
-    bank.showStatus();
+    //bank.showStatus();
 
     std::cout << "\n다음 라운드로 진행하려면 Enter 키를 누르세요...";
     std::cin.ignore();
@@ -214,4 +221,3 @@ void Game::playRound() {
 bool Game::checkEndCondition() const {
     return player.getFunds() >= goalAssets || year > 10;
 }
-
