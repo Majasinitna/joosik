@@ -1,5 +1,6 @@
 #include "Portfolio.h"
 #include <iostream>
+#include <iomanip>
 
 Portfolio::Portfolio(double initial_balance) : balance(initial_balance) {}
 
@@ -14,6 +15,7 @@ void Portfolio::sellStock(const Stock& stock, int quantity) {
 }
 
 void Portfolio::printStatus(const std::unordered_map<std::string, Stock>& stockList) {
+    std::cout << std::fixed << std::setprecision(1);
     std::cout << "Balance: " << balance << "\n";
     for (const auto& holding : holdings) {
         std::cout << holding.first << ": " << holding.second.quantity << " shares at "
@@ -27,6 +29,7 @@ double Portfolio::getBalance() const {
 
 void Portfolio::printHoldings() {
     for (const auto& holding : holdings) {
+        std::cout << std::fixed << std::setprecision(1);
         std::cout << holding.first << ": " << holding.second.quantity << " shares\n";
     }
 }

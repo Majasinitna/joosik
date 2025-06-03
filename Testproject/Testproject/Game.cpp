@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <iostream>
 #include <cstdlib>
+#include <iomanip>
 
 #ifdef _WIN32
 void clearScreen() {
@@ -22,6 +23,7 @@ void Game::start() {
 
     clearScreen();
 
+    std::cout << std::fixed << std::setprecision(1);
     std::cout << "게임 종료! 최종 자산: " << player.getFunds() << " 원\n";
 
     // 엔딩 메시지
@@ -44,7 +46,6 @@ void Game::start() {
 void Game::playRound() {
     clearScreen();
     std::cout << "\nRound " << round + 1 << " 시작!\n";
-
 
     // 뉴스 힌트 출력
     news.nextRound();

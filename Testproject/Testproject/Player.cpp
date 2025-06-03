@@ -1,7 +1,7 @@
 #include "Player.h"
 #include <iostream>
 
-Player::Player(int companyCount) : funds(1000000) {
+Player::Player(int companyCount) : funds(30000000) {
     holdings.resize(companyCount, 0);
     averageBuyPrices.resize(companyCount, 0.0);
 }
